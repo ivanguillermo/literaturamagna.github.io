@@ -10,16 +10,15 @@
   <meta name="description" content="La mejor literatura de la cultura occidental"/>
   <meta name="keywords" content="literatura, cultura occidental, clasicos, literatura clasica, literatura gotica, literatura romantica, literatura filosofia, novelas"/>
 
-  <!-- Google Fonts: Optimizado solo a las fuentes utilizadas en las reglas CSS -->
+  <!-- Google Fonts: Solo las tipografías utilizadas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Abel&family=Lovers+Quarrel&family=Open+Sans+Condensed:wght@300;700&family=Pacifico&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Estilos Externos -->
+  <!-- Estilos base CSS (Bootstrap solo para la cuadrícula y layout) -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-  <!-- Unificación de Estilos CSS -->
   <style>
     :root {
       --oldgold: rgba(120, 97, 0, 0.75);
@@ -38,12 +37,10 @@
       padding: 0;
     }
 
-    .mox { width: 75%; }
-    .flex-centrado-c { display: flex; flex-flow: column nowrap; justify-content: center; align-items: center; }
-    .flex-centrado-r { display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; }
-
+    /* Navbar personalizada en Vanilla JS */
     #nav_bar { 
       background-color: var(--yellow); 
+      border: none;
     }
 
     .navbar-brand-custom {
@@ -53,12 +50,22 @@
       font-size: 280%;
     }
 
+    /* Transición limpia para desplegables en Vanilla JS */
+    .dropdown-menu {
+      display: none;
+    }
+    
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
     #golden_frame {
       position: fixed;
       float: left;
       width: 27%;
       z-index: 1;
       top: 50px;
+      pointer-events: none;
     }
 
     #golden_frame2 {
@@ -67,6 +74,7 @@
       width: 4.6%;
       z-index: 1;
       top: 356px;
+      pointer-events: none;
     }
 
     #jumbolegend {
@@ -131,10 +139,13 @@
       margin-bottom: 5vh;
       border-radius: 0.52vw;
       text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .clasico:hover, .clasico:focus {
       text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
     .clasico1 { background-image: url('img/snowwhite.jpg'); }
@@ -195,10 +206,8 @@
         height: 40vh;
         background-size: 100% 100%;
       }
-      #golden_frame { width: 47%; z-index: 1; top: 44px; }
-      #golden_frame2 { width: 12%; z-index: 1; top: 84px; }
-      #tweets { flex-flow: column wrap; }
-      .tweets { width: 65vw; height: 55vh; margin-bottom: 10vh; overflow-y: hidden; }
+      #golden_frame { width: 47%; top: 44px; }
+      #golden_frame2 { width: 12%; top: 84px; }
       .book_name { font-size: 26px; }
       .book_subt { font-size: 21px; }
       footer.social-iframes { flex-direction: column; }
@@ -209,11 +218,11 @@
 <body>
 
   <div id="LiteraturaMagna">  
-    <!-- Navbar Bootstrap -->
+    <!-- Navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top" id="nav_bar">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+          <button id="nav-toggle-btn" aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" type="button">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -232,7 +241,7 @@
             <li><a href="/fairytails/index.html" style="color:white">Fairy Tales</a></li>
             
             <li class="dropdown">
-              <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" style="color:white">Leer <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="color:white">Leer <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="biblioteca.html">Biblioteca</a></li>
                 <li><a href="obras.html">De mi pluma</a></li>                                   
@@ -240,7 +249,7 @@
             </li>
 
             <li class="dropdown">
-              <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" style="color:white">Circa <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="color:white">Circa <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="about-analisis.html">Análisis</a></li>
                 <li><a href="about-literature.html">Literatura</a></li>                  
@@ -253,15 +262,15 @@
               <a href="./" style="background-color:black; color:white">Contáctanos</a>
             </li>             
           </ul>
-        </div><!--/.nav-collapse -->
-      </div><!--/.container-fluid -->
+        </div>
+      </div>
     </nav> 
 
-    <!-- Marcos dorados fijados -->
+    <!-- Marcos dorados -->
     <img id="golden_frame" src="https://3.bp.blogspot.com/-kpNiQhvlkis/W11T8zZgavI/AAAAAAAAFDo/169-Bo0knlsoBdA5oQpjuWjJAa3zhfWxgCLcBGAs/s1600/golden_frame01.png" alt="Golden Frame Left"/>
     <img id="golden_frame2" src="https://3.bp.blogspot.com/-WAfHW6SbYmc/W3IsFZEmVBI/AAAAAAAAFKs/gt8CAZs7HNQJ1OmaSFTwEmeFIZj22CzYACLcBGAs/s1600/golden_frame03.png" alt="Golden Frame Accent"/>
 
-    <!-- Jumbotron Principal -->
+    <!-- Hero Section -->
     <div class="jumbotron" id="jumboLM">
       <div class="container" style="padding-top:32vw">
         <p id="jumbolegend">La mejor literatura del mundo occidental</p>
@@ -309,16 +318,55 @@
     <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fliteraturamagna%2Fposts%2Fpfbid0vfpFMkbSpb5eRx2yfatXRooWfVQiPuJWX6sw33kwq21zj8WzdFhxhvB8HfyUFojml&show_text=false&width=500" width="25%" height="300" scrolling="yes" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
   </footer>
 
-  <!-- Pie de página final -->
   <footer class="fondo">
     <div>
       <p>&copy; Magna Litterae — Espacio dedicado al análisis profundo de los grandes clásicos de la literatura occidental, filosofía y narrativa universal.</p>
     </div>
   </footer>
 
-  <!-- Carga ordenada de Scripts JS (al final del body) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Lógica Vanilla JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Toggle del menú hamburguesa en móviles
+      const navToggleBtn = document.getElementById('nav-toggle-btn');
+      const navMenu = document.getElementById('navbar');
+
+      navToggleBtn.addEventListener('click', () => {
+        const isExpanded = navToggleBtn.getAttribute('aria-expanded') === 'true';
+        navToggleBtn.setAttribute('aria-expanded', !isExpanded);
+        navMenu.classList.toggle('in');
+      });
+
+      // Manejo de menús desplegables (Dropdowns)
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+      dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parent = toggle.closest('.dropdown');
+          
+          // Cerrar otros dropdowns abiertos
+          document.querySelectorAll('.dropdown.open').forEach(openDropdown => {
+            if (openDropdown !== parent) {
+              openDropdown.classList.remove('open');
+            }
+          });
+
+          // Alternar el dropdown actual
+          parent.classList.toggle('open');
+        });
+      });
+
+      // Cerrar dropdowns si se hace clic fuera de la navegación
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dropdown')) {
+          document.querySelectorAll('.dropdown.open').forEach(openDropdown => {
+            openDropdown.classList.remove('open');
+          });
+        }
+      });
+    });
+  </script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
